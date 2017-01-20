@@ -1,0 +1,235 @@
+//Homework Assignment 4
+#include <iostream>//Input Output Library
+#include <cstdlib>
+#include <string>
+using namespace std;
+
+int main(int argc, char** argv) {
+
+    char choice;
+    string pause;
+    //Loop on the menu
+    do{
+    
+        //Input values
+        cout<<"\n\nChoose from the list"<<endl;
+        cout<<"Type 0 to Exit"<<endl;
+        cout<<"Type 1 for Problem 'Sum of Numbers'"<<endl;
+        cout<<"Type 2 for Problem 'Characters for the ASCII Codes'"<<endl;
+        cout<<"Type 3 for Problem 'Ocean Levels'"<<endl;
+        cout<<"Type 4 for Problem 'Calories Burned'"<<endl;
+        cout<<"Type 5 for Problem 'Membership Fees Increase'"<<endl;
+        cout<<"Type 6 for Problem 'Celsius to Fahrenheit Table'"<<endl;
+        cout<<"Type 7 for Problem 'The Greatest and Least of These'"<<endl;
+        cout<<"Type 8 for Problem 'Square Display'"<<endl;
+        cout<<"Type 9 for Problem 'Pattern Displays'"<<endl;
+        cout<<"Type Here: ";
+        cin>>choice;
+
+        //Switch to determine the Problem
+        switch(choice){
+            case '1':{
+                cout<<"\nWe are in Problem 1"<<endl<<endl;
+                
+                int n, sum = 0;
+                cout<<"Write a positive integer: ";
+                cin>>n;
+                if (n > 0){
+					for(int i = 1; i <= n; i++){
+						sum += i;
+					}
+					 
+					cout<<"The sum of the numbers from 1 to "<<n<<" is "<<sum<<endl;                            
+				}
+				else
+					cout<<"You should type a number greater than 0"<<endl;
+                
+				cout<<"Press enter to continue";
+                            cin.get();
+                break;
+            }
+            case '2':{
+                cout<<"\nWe are in Problem 2"<<endl;
+                
+                int i = 0;
+                while(i<=127){
+    						
+			        if (i%16==0)
+			        {
+			        cout<<endl;
+			        i++;
+			        }
+			        cout<<(char)i;
+			        i++;
+			    }
+			    cout<<endl;
+			    cout<<"Press enter to continue";
+                            cin.get();
+                break;
+            }
+            case '3':{
+                cout<<"\nWe are in Problem 3"<<endl;
+                float total = 0, rise = 1.5;
+                int i = 1, n = 25;
+                
+                while (i <= n){
+                	total += rise;
+                	cout<<"The ocean will rise " << total <<" for the year "<<i<<endl;
+                	i++;
+				}
+                
+                
+                cout<<"Press enter to continue";
+                            cin.get();
+                break;
+            }
+            case '4':{
+            	cout<<"\nWe are in Problem 4"<<endl;
+            	
+            	float cal = 3.9, total = 0;
+            	int i =1, n = 30;
+            	
+            	while (i<=30){
+            		total += cal;
+            		if (i % 5 == 0 and i > 5){
+            			cout<<"The number calories burned after "<<i<<" minutes is "<<total<<endl;
+					}
+					
+					i++;
+				}
+            	
+            	cout<<endl;
+            	
+            	cout<<"Press enter to continue";
+                            cin.get();
+				break;
+			}
+			
+			case '5':{
+            	cout<<"\nWe are in Problem 5"<<endl;
+            	
+            	float chrgsYr = 2500, inc = 0.04;
+            	int n = 6;
+            	
+            	for (int i = 1; i <= n; i++){
+            		chrgsYr += chrgsYr*inc;
+            		if (i == 1)
+						cout<<"After 1 year the membership fee will be "<<chrgsYr<<endl;
+					else
+						cout<<"After "<<i <<" years the membership fee will be "<<chrgsYr<<endl;
+				}
+            	
+            	
+            	cout<<endl;
+            	
+            	cout<<"Press enter to continue";
+                            cin.get();
+				break;
+			}
+			
+			case '6':{
+            	cout<<"\nWe are in Problem 6"<<endl;
+            	int n = 20;
+            	float fahr;
+            	
+            	for (int i = 0; i<=n; i++){
+            		fahr = float(i)*9/5 + 32;
+            		cout<<i<<" Celsius is equivalent to "<<fahr<<" Fahrenheit"<<endl;
+				}
+            	
+            	
+            	
+            	cout<<endl;
+            	
+                            cout<<"Press enter to continue";
+                            cin.get();
+				break;
+			}
+			
+			case '7':{
+            	cout<<"\nWe are in Problem 7"<<endl;
+            	int number,greatest, least,i = 0;
+            	cout<<"If you want to stop the program type -99\n";
+            	do{		
+            		cout<<"Type an integer: ";
+            		cin>>number;
+            		if (i == 0){ //This is used only the first time
+            			greatest = number;
+            			least = number;
+            		}
+            		i++;
+            		
+            		if (number > greatest && number!=-99)
+            			greatest = number;
+            		if (number < least && number!=-99)
+            			least = number;
+            			
+            		
+				}while(number != -99);
+            	
+            	cout<<"The greatest number is "<<greatest<<endl;
+            	cout<<"The least number is "<<least<<endl;
+            	cout<<endl;
+            	cout<<"Press enter to continue";
+                cin.get();
+				break;
+			}
+            
+            case '8':{
+            	cout<<"\nWe are in Problem 8"<<endl;
+            	
+            	int n;
+            	cout<<"Type a positive integer no greater than 15: ";
+            	cin >> n;
+            	if (n >= 0 && n <= 15){
+	            	for (int i = 0; i < n; i++){
+	            		for (int j = 0; j < n; j++){
+	            			cout<<"X";
+						}
+						cout<<endl;
+					}
+				}
+            	cout<<endl;
+            	cout<<"Press enter to continue";
+                            cin.get();
+				break;
+			}
+			
+			case '9':{
+				cout<<"\nWe are in Problem 9"<<endl;
+				
+				int i=1;
+			    while(i<=10){
+			        int j=0;
+			        for(; j<i; j++)
+			        {
+			            cout<<"+";
+			        }
+			        cout<<endl;
+			        i++;
+			    }
+			        cout<<endl<<endl;
+			        i=1;
+			    while(i<=10){
+			        int j=11;
+			        for(;j>i;j--){
+			            cout<<"+";
+			        }
+			        cout<<endl;
+			        i++;
+				}
+			    cout<<endl;
+                            
+			    cout<<"Press enter to continue";
+                            cin.get();
+                            
+                            break;
+			}
+            default:
+                cout<<"Exit of the program"<<endl;
+        }
+    }while(choice>='1'&&choice<='9');
+    
+    //Exit
+    return 0;
+}
