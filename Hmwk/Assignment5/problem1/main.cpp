@@ -19,6 +19,9 @@ float fallingDistance(float);
 static float gravity= 9.8;
 int coinToss(int);
 float kineticEnergy(float,float);
+void celsius(float);
+float presentValue(float,float,float);
+float pORloss(float,float,float,float,float);
 int main(){
    
    
@@ -46,6 +49,7 @@ int main(){
                 break;
 
             case 1:{//execution of program #1
+                cout<<"Problem 1.\n"<<"Markup\n";
                 float wCost;
                 float markUp;
                 cout<<"What is the wholesale cost?(positive numbers)\n";
@@ -67,6 +71,7 @@ int main(){
 
             case 2:{
                 //execution of program#2 
+                cout<<"Problem 2.\n"<<"Winning Division\n";
                
                  float m[4];
                  string divNames[4];
@@ -85,16 +90,11 @@ int main(){
                           cin.ignore();
                           cin.get();
                           i--;
-                          }
-                        
-                        
+                          }               
                         if (m[i]==-1)
                             i--;
-                        
                          }
-             
                 findHighest(m, divNames);
-
                 cout<<"\nPress enter to continue";
                 cout<<endl;
                 cin.ignore();
@@ -103,7 +103,8 @@ int main(){
             }
 
             case 3:{
-
+                    
+                 cout<<"Problem 3.\n"<<"Safest driving area\n";
                       int m[5];
                  string cityRegions[5];
                     string region;
@@ -122,16 +123,10 @@ int main(){
                           cin.get();
                           i--;
                         }
-
-
                         if (m[i]==0)
                             i--;
-                      
                     }
-                    
-             
                 findLowest(m, cityRegions);
-
                 cout<<"\nPress enter to continue";
                 cout<<endl;
                 cin.ignore();
@@ -142,24 +137,14 @@ int main(){
 
      
             case 4:{
-                /*Falling Distance
-When an object is falling because of gravity, the following formula can be used to
-determine the distance the object falls in a speci c time period:
-d = 1
-2 gt2
-The variables in the formula are as follows: d is the distance in meters, g is 9.8, and t
-is the amount of time, in seconds, that the object has been falling.
-Write a function named fallingDistance that accepts an object s falling time (in
-seconds) as an argument. The function should return the distance, in meters, that the
-object has fallen during that time interval. Write a program that demonstrates the
-function by calling it in a loop that passes the values 1 through 10 as arguments, and
-displays the return value
-                 */
+                cout<<"Problem 4.\n"<<"Falling Distance\n";
+                //execution of program#4. FALLING DISTANCE
+                
                 float time;
                 cout<<"Please enter the time to calculate the distance that travels in free fall.\n";
                 cin>>time;
                 
-                cout<<fallingDistance(time)<<endl;
+                cout<<"The distance in meters is "<<fallingDistance(time)<<endl;
                 for(int i=1;i<=10;i++)
                     cout<<endl<<"The distance in meters is: "<<fallingDistance(i);
                 
@@ -171,17 +156,7 @@ displays the return value
                 break;
             }
             case 5:{
-                /*6. Kinetic Energy SIMILAR TO LAST ONE
-In physics, an object that is in motion is said to have kinetic energy. The following formula
-can be used to determine a moving object s kinetic energy:
-KE = 1
-2 mv2
-The variables in the formula are as follows: KE is the kinetic energy, m is the object s
-mass in kilograms, and v is the object s velocity, in meters per second.
-Write a function named kineticEnergy that accepts an object s mass (in kilograms)
-and velocity (in meters per second) as arguments. The function should return the
-amount of kinetic energy that the object has. Demonstrate the function by calling it in
-a program that asks the user to enter values for mass and velocity. */
+                cout<<"Problem 5.\n"<<"Kinetic Energy\n";
                 float mass, velocity;
                 cout<<"Please enter the mass of the object(in kg)\n";
                 cin>>mass;
@@ -198,13 +173,13 @@ a program that asks the user to enter values for mass and velocity. */
                 break;
             }
             case 6:{
-                /*. 7. Celsius Temperature Table RELATIVELY SIMILAR TO LAST ONES
-The formula for converting a temperature from Fahrenheit to Celsius is
-where F is the Fahrenheit temperature and C is the Celsius temperature. Write a function
-named celsius that accepts a Fahrenheit temperature as an argument. The function
-should return the temperature, converted to Celsius. Demonstrate the function by
-calling it in a loop that displays a table of the Fahrenheit temperatures 0 through 20
-and their Celsius equivalents.*/
+                cout<<"Problem 6.\n"<<"Celsius temperature table\n";
+                
+                for(float fahr=1;fahr<=20;fahr++){
+                
+                celsius(fahr);
+                cout<<endl;
+                }
                cout<<"\nPress enter to continue";
                 cout<<endl;
                 cin.ignore();
@@ -212,18 +187,11 @@ and their Celsius equivalents.*/
                 break;
             }
             case 7:{
+                cout<<"Problem 7.\n"<<"Coing Toss\n";
                 int times;
                 cout<<"enter the number of times that you wish to flip the coin\n";
                 cin>>times;
                 coinToss(times);
-                
-                /*8. Coin Toss
-Write a function named coinToss that simulates the tossing of a coin. When you
-call the function, it should generate a random number in the range of 1 through 2. If
-the random number is 1, the function should display heads. If the random number
-is 2, the function should display tails. Demonstrate the function in a program
-that asks the user how many times the coin should be tossed, and then simulates the
-tossing of the coin that number of times.*/
                cout<<"\nPress enter to continue";
                 cout<<endl;
                 cin.ignore();
@@ -231,21 +199,17 @@ tossing of the coin that number of times.*/
                 break;
             }
             case 8:{
-                /*9. Present Value
-Suppose you want to deposit a certain amount of money into a savings account, and
-then leave it alone to draw interest for the next 10 years. At the end of 10 years you
-would like to have $10,000 in the account. How much do you need to deposit today
-to make that happen? You can use the following formula, which is known as the
-present value formula, to nd out:
-The terms in the formula are as follows:
-* P is the present value, or the amount that you need to deposit today.
-* F is the future value that you want in the account. (In this case, F is $10,000.)
-* r is the annual interest rate.
-* n is the number of years that you plan to let the money sit in the account.
-Write a program that has a function named presentValue that performs this calculation.
-The function should accept the future value, annual interest rate, and number of
-years as arguments. It should return the present value, which is the amount that you
-need to deposit today. Demonstrate the function in a p*/
+                cout<<"Problem 8.\n"<<"Present Value\n";
+                float fvalue, aIR,n;
+                cout<<"Please enter the future value you wish to have.\n";
+                cin>>fvalue;
+                cout<<"\nPlease enter the Annual Interest Rate(e.g. 3 or 8).\n";
+                cin>>aIR;
+                cout<<"\nplease enter the amount of years you are willing to let the money in.\n";
+                cin>>n;
+                cout<<presentValue(fvalue,aIR,n);
+                
+                        
               cout<<"\nPress enter to continue";
                 cout<<endl;
                 cin.ignore();
@@ -253,13 +217,7 @@ need to deposit today. Demonstrate the function in a p*/
                 break;
             }
             case 9:{
-                /*21. isPrime Function
-A prime number is a number that is only evenly divisible by itself and 1. For example,
-the number 5 is prime because it can only be evenly divided by 1 and 5. The number
-6, however, is not prime because it can be divided evenly by 1, 2, 3, and 6.
-Write a function name isPrime, which takes an integer as an argument and returns
-true if the argument is a prime number, or false otherwise. Demonstrate the function
-in a complete program*/
+                cout<<"Problem 9.\n"<<"isPrime function\n";
                 cout<<"Type an integer to determine if it is prime: ";
                 int x;
                 cin>>x;
@@ -273,18 +231,25 @@ in a complete program*/
                 break;
             }
             case 10:{
-                /*19. Stock Pro t
-The pro t from the sale of a stock can be calculated as follows:
-Pro t = ((NS * SP) SC) ((NS * PP) + PC)
-where NS is the number of shares, SP is the sale price per share, SC is the sale commission
-paid, PP is the purchase price per share, and PC is the purchase commission paid.
-If the calculation yields a positive value, then the sale of the stock resulted in a pro t.
-If the calculation yields a negative number, then the sale resulted in a loss.
-Write a function that accepts as arguments the number of shares, the purchase price
-per share, the purchase commission paid, the sale price per share, and the sale commission
-paid. The function should return the pro t (or loss) from the sale of stock.
-Demonstrate the function in a program that asks the user to enter the necessary data
-and displays the amount of the profit or loss*/
+                cout<<"Problem 10.\n"<<"Stock profit\n";
+                float NS,SP,SC,PP,PC;
+                cout<<"\nHow many shares do you have? \n";
+                cin>>NS ;
+                cout<<"\nWhat was the purchase price per share"
+                        "? \n";
+                cin>>PP ;
+                cout<<"\nWhat was the purchase commission paid? \n";
+                cin>>PC ;
+                cout<<"\nWhat was the sale price per share? \n";
+                cin>>SP;
+                cout<<"\nWhat was the sales commission paid?\n";
+                cin>>SC;
+                if(pORloss(NS,SP,SC,PP,PC)<0)
+                    cout<<"You had a loss of $"<<pORloss(NS,SP,SC,PP,PC);
+                if(pORloss(NS,SP,SC,PP,PC)>0)
+                    cout<<"You had a profit of $"<<pORloss(NS,SP,SC,PP,PC);
+                if(pORloss(NS,SP,SC,PP,PC)==0)
+                    cout<<"You didn't make a profit nor loss";
                 cout<<"\nPress enter to continue";
                 cout<<endl;
                 cin.ignore();
@@ -316,7 +281,7 @@ double getSales(string divName){
          cout<<"Please enter your division's quaterly sales figure: \n";
     cin>>salesFigure;
     while(salesFigure<0){
-        cout<<"The number is not valit, please enter a positive number\n";
+        cout<<"The number is not valid, please enter a positive number\n";
         cin>>salesFigure;
         
     }
@@ -336,7 +301,7 @@ int getNumAccidents(string regions){
          cout<<"Please enter the number of accidents: \n";
     cin>>accidentNumber;
      while(accidentNumber<0){
-        cout<<"The number is not valit, please enter a positive number\n";
+        cout<<"The number is not valid, please enter a positive number\n";
         cin>>accidentNumber;
      }
     return accidentNumber;
@@ -422,15 +387,30 @@ bool isPrime(int x){
 }          
 int coinToss(int times){
     int toss;
-    for(int i=1;i<=times;i++){
-    srand(time(NULL));
-        toss=rand ()%10 - 7;
+    int i=1;
+    while(i<=times){//this function does output a random number but not every time in the loop???
+        unsigned seed=time(0);
+        srand(seed);
+        toss=rand()%2 +1;
         if(toss==1)
             cout<<"\nheads";
         if(toss==2)
             cout<<"\ntails";
-        else
-            cout<<toss<<times;
+        i++;
+     
     }
 }
+void celsius(float fahr){
     
+        float celsius=(5.0/9.0)*(fahr-32);
+        cout<<celsius;
+    
+}
+float presentValue(float fValue,float aIR,float n){
+    float pValue= fValue/(pow((1+(aIR/100)),n));
+    return pValue;
+}
+float pORloss(float NS,float SP,float SC,float PP,float PC){
+    int profit= ((NS*SP)-SC)-((NS*PP)+PC);
+    return profit;
+}
