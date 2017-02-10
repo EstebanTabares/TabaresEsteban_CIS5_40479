@@ -260,6 +260,7 @@ void codeBreaker() {
             << "     - Which numbers are in the code, but in a different spot"
             << " [?]" << endl
             << "     - Which numbers are incorrect [X]" << endl << endl;
+            << "the code can repeat numbers and have the 0 included\n\n";
     
     int choice;
     cout << "Choose your difficulty:" << endl
