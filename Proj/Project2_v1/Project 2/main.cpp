@@ -1,19 +1,21 @@
 
-//Maze and codebreaker Working with some minor issues and some missing requirements. Project2_v2
+//Maze and codebreaker. Project2_v3
 #include <iostream>
 #include <cstdlib>
 #include <vector>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
-void print(string n[50][50], int a, int b);
+void print(string n[50][50], int a, int b);//following three functions used in maze game
 
 void fill(string n[50][50]);
 
 void fill2(string n[50][50]);
 
- void codeBreaker();
- class Code
+ void codeBreaker();//function that is executed when maze is passed. it calls the second game to execute.
+ class Code// class used in second game.
 {
 private:
     int size;
@@ -25,6 +27,7 @@ public:
     Code();
     void setSize(int);
     void makeCode();
+    void sortCode();
     void makeGuess(int);
     void makeProgress();
     bool winStatus();
@@ -36,7 +39,7 @@ public:
     int getTurn();
 };
 
-void playGame(int size);
+void playGame(int size);//function for codebreaker
 
 int main(){
 	bool endGame = false;
@@ -49,7 +52,7 @@ int main(){
 		 p='2';//to be able to play again after winning one time(letting it go trough the next loop).
 		 cout<<"\n\t\t\tMaze\n";
 		 cout<<"\n\n\tUse WASD and enter to move in the maze.\n\n";
-		 cout<<"\tPress 0 to return to the menu or press e to exit the game.\n\n\n";
+		 cout<<"\tPress 0 to return to the menu or press p to exit the game.\n\n\n";
 		 cout<<"\tPlease press enter to continue\n";
 		 cin.get();
 		 cout<<string(46, '\n');
@@ -147,14 +150,14 @@ int main(){
                                  codeBreaker();
                                  }
 				 else if( p== '2')
-				 	p = 'e';
+				 	p = 'p';
                                  else
                                      cout<<"Please enter 1 or 2";
 
 
 
 			 }
-			 if(p == 'e' || p == 'E'){ //End of the game
+			 if(p == 'p' || p == 'P'){ //End of the game
 			 	cout<<"\nEnd of the game!\n\n";
 			 	endGame = true;
 			 	p='0';
@@ -181,7 +184,7 @@ void print(string n[50][50], int a, int b){//function that 'clears' the screen a
 
 
 
-void fill(string n[50][50]){//initial matrix, initially(everytime the user wins or starts the program) used every time to load data in matrix m into matrix v(or n). 
+void fill(string n[50][50]){//initial matrix(2D array), initially(everytime the user wins or starts the program) used every time to load data in matrix m into matrix v(or n). 
 	int i,j;
 	string m[14][13] = {
 	{"o"," ","#","#","#","#","#","#","#","#","#","#","#"},
@@ -244,13 +247,7 @@ void fill2(string n[50][50]){
 }
 
 
-
-
-
-/*
- * 
- */
-void codeBreaker() {
+void codeBreaker() {//Second game, initialized when a maze is won.
 
     cout << "   CODEBREAKER!" << endl << endl;
     
@@ -259,8 +256,9 @@ void codeBreaker() {
             << "     - Which numbers are correct [!]" << endl
             << "     - Which numbers are in the code, but in a different spot"
             << " [?]" << endl
-            << "     - Which numbers are incorrect [X]" << endl << endl;
-            << "the code can repeat numbers and have the 0 included\n\n";
+            << "     - Which numbers are incorrect [X]" << endl << endl
+            << "P.S. the code can repeat numbers and have the 0 included. You only have 10 trials\n\n";
+            
     
     int choice;
     cout << "Choose your difficulty:" << endl
@@ -316,26 +314,43 @@ void Code::makeGuess(int input)
 {
     guess.push_back(input);
 }
-
-void Code::makeProgress()
+void Code::sortCode()//sorting code
 {
-    for(int i = 0; i < size; i++)
-    {
-        if(guess[i] == code[i]) progress[i] = '!';
-        else
-        {
-            if(guess[i] != code[i] && (guess[i] == code[0] 
-                    || guess[i] == code[1] || guess[i] == code[2]
-                    || guess[i] == code[3] || guess[i] == code[4]
-                    || guess[i] == code[5] || guess[i] == code[6]))
-            {
-                progress[i] = '?';
-            }
-            else
-                progress[i] = 'X';
-        }
-    }
-    
+	for (int i = 0; i < size - 1; i++)
+	{
+		for (int j = i + 1; j < size; j++)
+		{
+			if(code[i]>code[j]){
+				code[i]=code[i]^code[j];
+                code[j]=code[i]^code[j];
+                code[i]=code[i]^code[j];
+			}
+		}
+	}	
+}
+void Code::makeProgress()//compare guess and code vectors and show either ?,! or X
+{
+	for(int i = 0; i < size; i++)
+	{
+		if(guess[i] == code[i]) progress[i] = '!';
+		else if (size == 4 && (guess[i] == code[0] || guess[i] == code[1] || guess[i] == code[2]
+                    || guess[i] == code[3]))
+		{
+			progress[i] = '?';
+		}
+		else if (size == 5 && (guess[i] == code[0] || guess[i] == code[1] || guess[i] == code[2]
+                    || guess[i] == code[3] || guess[i] == code[4]))
+		{
+			progress[i] = '?';
+		}
+		else if (size == 6 && (guess[i] == code[0] || guess[i] == code[1] || guess[i] == code[2]
+                    || guess[i] == code[3] || guess[i] == code[4] || guess[i] == code[5]))
+		{
+			progress[i] = '?';
+		}
+		else
+			progress[i] = 'X';
+	}
 }
 
 void Code::outputCode()
@@ -373,6 +388,8 @@ void playGame(int size)
     Code game = Code();
     game.setSize(size);
     game.makeCode();
+    game.sortCode(); //Sort the code to make it easier
+    
     
     int input; int turn = 0;
     do
